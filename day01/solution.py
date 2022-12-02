@@ -12,13 +12,10 @@ for s in open(infile):
 
 elves.append(elf)
 
-print("Solution 1:")
-print(max(elves))
+print(f"Solution 1: {max(elves)}")
 
 elves.sort(reverse=True)
-
-print("Solution 2:")
-print(sum(elves[:3]))
+print(f"Solution 2: {sum(elves[:3])}")
     
 
 
