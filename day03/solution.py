@@ -9,12 +9,12 @@ def sum_priorities(items):
     return x+y
 
 rucsacks = [s.strip() for s in open(infile)]
-commonitems = [next(iter(set(s[:int(len(s)/2)]).intersection( set(s[int(len(s)/2):])))) for s in rucsacks]
+commonitems = [next(iter(set(s[:int(len(s)/2)]) & set(s[int(len(s)/2):]))) for s in rucsacks]
 
 print(f'Solution 1: {sum_priorities(commonitems)}')
 
 groups = [[rucsacks[i], rucsacks[i+1], rucsacks[i+2]] for i in range(0, len(rucsacks), 3)]
-commonitems2 = [next(iter(set(h[0])& set(h[1])&set(h[2])))for h in groups]
+commonitems2 = [next(iter(set(h[0]) & set(h[1]) & set(h[2])))for h in groups]
 
 print(f'Solution 2: {sum_priorities(commonitems2)}')
 
