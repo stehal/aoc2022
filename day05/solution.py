@@ -9,16 +9,8 @@ def parse_move(move):
     m = move.split(" ")
     return [int(m[1]),int(m[3]),int(m[5])]
 
-def parse_moves(move):
-    return  [parse_move(l) for l in lines[initial_height + 2:]]
-
-moves = parse_moves(lines)
-
-def split_line(line, width):
-    return [line[i] for i in range(1,4 * width,4)]
-
 def parse_stack(infile):
-    stacklines = reversed([split_line(l,width) for l in lines[:initial_height]])
+    stacklines = reversed([[line[i] for i in range(1,4 * width,4)] for line in lines[:initial_height]])
     stack = defaultdict(list)
     for line in stacklines:
         for col in range(1, width +1):
@@ -32,12 +24,11 @@ def do_move(m,stack):
         stack[m[2]].append(top)
 
 def do_move2(m, stack):
-    top = []
-    for n in range(0, m[0]):
-        top.append(stack[m[1]].pop())
+    top = [stack[m[1]].pop() for n in range(0, m[0])]
     stack[m[2]].extend(reversed(top))
 
 def solution(func):
+    moves = [parse_move(l) for l in lines[initial_height + 2:]]
     stack = parse_stack(infile)
     for m in moves:
         func(m, stack)
