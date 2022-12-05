@@ -1,0 +1,5 @@
+*.pyc
+run.py
+input.txt
+input_file.txt
+__pycache__
